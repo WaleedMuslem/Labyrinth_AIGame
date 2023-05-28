@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AICore;
 
-namespace DieHard3CA
+namespace LabyrinthBall
 {
     class Program
     {
@@ -43,11 +43,11 @@ namespace DieHard3CA
             DepthFirstLabyrinthBall depthFirst = new DepthFirstLabyrinthBall();
             BreadthFirstLabyrinthBall breadthFirst = new BreadthFirstLabyrinthBall();
             TrialAndErrorLabyrinthBall trialAndError = new TrialAndErrorLabyrinthBall(1000);
-            LabyrinthBallNode terminalNode = trialAndError.Search();
+            LabyrinthBallNode terminalNode = backtrack.Search();
 
             //backtrack.PrintSolution(terminalNode);
             int steps = 0;
-            foreach (var node in trialAndError.GetSolution(terminalNode))
+            foreach (var node in backtrack.GetSolution(terminalNode))
             {
                 PrintState(node.State);
                 steps++;

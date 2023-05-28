@@ -14,21 +14,18 @@ namespace LabyrinthBall_WF
 {
     public partial class Form1 : Form
     {
-        int index = 0;
+        int index;
         private const int CellSize = 28;
         Graphics g;
         LabyrinthBallNode terminalNode;
         List<LabyrinthBallNode> solution;
         GraphSearchLabyrinthBall searchingAlgorithm;
-        BacktrackLabyrinthBall backtrack = new BacktrackLabyrinthBall(19, true);
 
 
         public Form1()
         {
             InitializeComponent();
             index = 0;
-            //terminalNode = backtrack.Search();
-            //solution = backtrack.GetSolution(terminalNode).ToList();
         }
 
 
@@ -70,8 +67,8 @@ namespace LabyrinthBall_WF
                 if (index > 0)
                 {
                     index--;
+                    label2.Text = "Step : " + index;
                     canvas.Invalidate();
-
                 }
             }
         }
@@ -83,6 +80,7 @@ namespace LabyrinthBall_WF
                 if (index < solution.Count - 1)
                 {
                     index++;
+                    label2.Text = "Step : " + index;
                     canvas.Invalidate();
                 }
             }
@@ -114,6 +112,7 @@ namespace LabyrinthBall_WF
         private void ResetSolution()
         {
             this.index = 0;
+            label2.Text = "Step : 0";
             this.terminalNode = this.searchingAlgorithm.Search();
             this.solution = this.searchingAlgorithm.GetSolution(terminalNode).ToList();
             canvas.Invalidate();
@@ -127,7 +126,7 @@ namespace LabyrinthBall_WF
 
         private void GetBacktrackSolution()
         {
-            this.searchingAlgorithm = new BacktrackLabyrinthBall(100,true);
+            this.searchingAlgorithm = new BacktrackLabyrinthBall(19,true);
             this.ResetSolution();
         }
 
